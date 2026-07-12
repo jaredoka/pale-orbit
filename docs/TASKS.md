@@ -20,7 +20,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Player scene per ARCHITECTURE §5; placeholder rectangle sprite; test room scene with walls (`scenes/rooms/TestRoom.tscn`, temporary).
   Verify: play — WASD 8-dir, normalized diagonals, wall sliding.
 
-- [ ] **T04 · Shooting + projectile pool** — Sonnet · Deps: T02, T03 · Reqs: PLR-2, NFR-1
+- [x] **T04 · Shooting + projectile pool** — Sonnet · Deps: T02, T03 · Reqs: PLR-2, NFR-1
   `ProjectilePool` (§6), Projectile scene, 4-dir arrow-key shooting from stats; collision layers table §7.
   Verify: play — hold arrows while moving; projectiles die on walls/range; no node count growth over 30 s of firing (pool works).
 
