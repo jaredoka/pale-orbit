@@ -26,7 +26,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
 
 ## M1 — Combat & rooms
 
-- [ ] **T05 · Player health + i-frames** — Sonnet · Deps: T02, T03 · Reqs: PLR-3, PLR-4
+- [x] **T05 · Player health + i-frames** — Sonnet · Deps: T02, T03 · Reqs: PLR-3, PLR-4
   HurtBox, `GameState.damage_player`, 1 s i-frames with blink.
   Verify: play vs. a placeholder damage zone — one hit/second max, blink visible.
 
