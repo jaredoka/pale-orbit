@@ -49,6 +49,8 @@ var _alive: int = 0
 var _started: bool = false
 
 const PEDESTAL_SCENE := preload("res://scenes/items/ItemPedestal.tscn")
+const PICKUP_SCENE := preload("res://scenes/items/Pickup.tscn")
+const HEART_DROP_CHANCE := 0.15
 
 ## Placeholder floor tints for special rooms until the M4 tileset (T22).
 const FLOOR_TINTS := {
@@ -141,6 +143,19 @@ func _clear_room() -> void:
 	GameState.room_cleared.emit(coord)
 	if _started and _is_boss_room():
 		GameState.boss_defeated.emit()
+	if _started:
+		_maybe_drop_heart()
+
+
+## Seeded ~15% half-heart drop on combat clear (ITM-1, NFR-4).
+func _maybe_drop_heart() -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash([GameState.rng_seed, coord, "heart_drop"])
+	if rng.randf() < HEART_DROP_CHANCE:
+		var pickup := PICKUP_SCENE.instantiate()
+		pickup.heal_amount = 0.5
+		pickup.position = Vector2(240, 135)
+		add_child(pickup)
 
 
 func _lock_all() -> void:

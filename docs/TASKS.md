@@ -83,7 +83,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Heart pickups (half/full, remain when HP full), pedestal grants ItemDef, 3 item `.tres` files, HUD item icons.
   Verify: play — each item's stat change is measurable; overheal impossible.
 
-- [ ] **T18 · Heart drops** — Sonnet · Deps: T10, T17 · Reqs: ITM-1
+- [x] **T18 · Heart drops** — Sonnet · Deps: T10, T17 · Reqs: ITM-1
   Seeded ~15% half-heart drop chance on room clear.
   Verify: play several rooms — drops occur; same seed → same drops.
 
