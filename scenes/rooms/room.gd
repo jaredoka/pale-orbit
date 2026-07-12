@@ -52,10 +52,10 @@ const PEDESTAL_SCENE := preload("res://scenes/items/ItemPedestal.tscn")
 const PICKUP_SCENE := preload("res://scenes/items/Pickup.tscn")
 const HEART_DROP_CHANCE := 0.15
 
-## Placeholder floor tints for special rooms until the M4 tileset (T22).
+## Modulate tints distinguishing special rooms (applied to the tile layer).
 const FLOOR_TINTS := {
-	FloorGenerator.RoomType.TREASURE: Color(0.16, 0.14, 0.05),
-	FloorGenerator.RoomType.BOSS: Color(0.16, 0.06, 0.07),
+	FloorGenerator.RoomType.TREASURE: Color(1.1, 1.0, 0.65),
+	FloorGenerator.RoomType.BOSS: Color(1.15, 0.7, 0.7),
 }
 
 @onready var doors: Array[Node] = $Doors.get_children()
@@ -72,8 +72,11 @@ func _ready() -> void:
 			door.disable()
 		else:
 			door.player_entered.connect(func(dir: Vector2i) -> void: door_entered.emit(dir))
+	var tiles := TilePainter.paint(hash([GameState.rng_seed, coord, "tiles"]))
 	if data != null and FLOOR_TINTS.has(data.type):
-		$Floor.color = FLOOR_TINTS[data.type]
+		tiles.modulate = FLOOR_TINTS[data.type]
+	add_child(tiles)
+	move_child(tiles, 0)
 	if data != null and data.type == FloorGenerator.RoomType.TREASURE:
 		var pedestal := PEDESTAL_SCENE.instantiate()
 		pedestal.position = Vector2(240, 135)

@@ -12,11 +12,6 @@ size = Vector2(16, 119)
 [node name="Room" type="Node2D"]
 script = ExtResource("1_room")
 
-[node name="Floor" type="ColorRect" parent="."]
-offset_right = 480.0
-offset_bottom = 270.0
-color = Color(0.09, 0.1, 0.13, 1)
-
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 1
 collision_mask = 0
@@ -52,28 +47,6 @@ shape = SubResource("wall_v_seg")
 [node name="RightB" type="CollisionShape2D" parent="Walls"]
 position = Vector2(472, 210.5)
 shape = SubResource("wall_v_seg")
-
-[node name="WallVisualTop" type="ColorRect" parent="."]
-offset_right = 480.0
-offset_bottom = 16.0
-color = Color(0.25, 0.28, 0.34, 1)
-
-[node name="WallVisualBottom" type="ColorRect" parent="."]
-offset_top = 254.0
-offset_right = 480.0
-offset_bottom = 270.0
-color = Color(0.25, 0.28, 0.34, 1)
-
-[node name="WallVisualLeft" type="ColorRect" parent="."]
-offset_right = 16.0
-offset_bottom = 270.0
-color = Color(0.25, 0.28, 0.34, 1)
-
-[node name="WallVisualRight" type="ColorRect" parent="."]
-offset_left = 464.0
-offset_right = 480.0
-offset_bottom = 270.0
-color = Color(0.25, 0.28, 0.34, 1)
 
 [node name="Doors" type="Node2D" parent="."]
 

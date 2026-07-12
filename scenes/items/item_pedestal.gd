@@ -13,6 +13,8 @@ func _ready() -> void:
 	touch_area.body_entered.connect(_on_body_entered)
 	if item == null:
 		item = _pick_item()
+	if item.icon != null:
+		$ItemIcon.texture = item.icon
 
 
 ## Deterministic per run seed and room (NFR-4).
@@ -32,5 +34,5 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	_taken = true
 	GameState.apply_item(item)
-	sprite.visible = false
+	$ItemIcon.visible = false
 	touch_area.set_deferred("monitoring", false)
