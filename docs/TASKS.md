@@ -52,7 +52,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
 
 ## M2 — Floor generation
 
-- [ ] **T11 · FloorGenerator + unit tests** — **Opus** · Deps: T01 · Reqs: GEN-1..4, NFR-4
+- [x] **T11 · FloorGenerator + unit tests** — **Opus** · Deps: T01 · Reqs: GEN-1..4, NFR-4
   Pure-logic generator per §4 + `RoomData`; full headless test suite (determinism, connectivity, dead-end invariants over 100 seeds).
   Files: `scripts/floor_generator.gd`, `scripts/room_data.gd`, `tests/test_floor_generator.gd`
   Verify: `godot --headless --script res://tests/test_floor_generator.gd` exits 0.
