@@ -48,6 +48,14 @@ var coord: Vector2i = Vector2i.ZERO
 var _alive: int = 0
 var _started: bool = false
 
+const PEDESTAL_SCENE := preload("res://scenes/items/ItemPedestal.tscn")
+
+## Placeholder floor tints for special rooms until the M4 tileset (T22).
+const FLOOR_TINTS := {
+	FloorGenerator.RoomType.TREASURE: Color(0.16, 0.14, 0.05),
+	FloorGenerator.RoomType.BOSS: Color(0.16, 0.06, 0.07),
+}
+
 @onready var doors: Array[Node] = $Doors.get_children()
 
 
@@ -62,6 +70,12 @@ func _ready() -> void:
 			door.disable()
 		else:
 			door.player_entered.connect(func(dir: Vector2i) -> void: door_entered.emit(dir))
+	if data != null and FLOOR_TINTS.has(data.type):
+		$Floor.color = FLOOR_TINTS[data.type]
+	if data != null and data.type == FloorGenerator.RoomType.TREASURE:
+		var pedestal := PEDESTAL_SCENE.instantiate()
+		pedestal.position = Vector2(240, 135)
+		add_child(pedestal)
 	if GameState.cleared.get(coord, false) or _is_safe_room():
 		GameState.cleared[coord] = true
 		_open_all()
