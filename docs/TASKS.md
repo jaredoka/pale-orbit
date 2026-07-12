@@ -61,7 +61,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   `Main.tscn` per §5: generate floor from `GameState.rng_seed` (support `--seed=` arg), instance START, wire doors to transitions, reposition player, camera snap.
   Verify: play with `--seed=42` twice — same layout; walk the whole floor.
 
-- [ ] **T13 · Spawn layouts** — Sonnet · Deps: T10, T12 · Reqs: RM-4
+- [x] **T13 · Spawn layouts** — Sonnet · Deps: T10, T12 · Reqs: RM-4
   ≥4 hand-made NORMAL layouts mixing archetypes, chosen by seeded RNG.
   Verify: play two seeds — layout variety; same seed reproduces layouts.
 

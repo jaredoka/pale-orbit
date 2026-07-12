@@ -94,21 +94,3 @@ direction = Vector2i(1, 0)
 position = Vector2(8, 135)
 rotation = 1.5707964
 direction = Vector2i(-1, 0)
-
-[node name="Spawns" type="Node2D" parent="."]
-
-[node name="Spawn1" type="Marker2D" parent="Spawns"]
-position = Vector2(120, 80)
-metadata/enemy_scene = "res://scenes/enemies/Skitterer.tscn"
-
-[node name="Spawn2" type="Marker2D" parent="Spawns"]
-position = Vector2(360, 80)
-metadata/enemy_scene = "res://scenes/enemies/Spitter.tscn"
-
-[node name="Spawn3" type="Marker2D" parent="Spawns"]
-position = Vector2(120, 190)
-metadata/enemy_scene = "res://scenes/enemies/Blob.tscn"
-
-[node name="Spawn4" type="Marker2D" parent="Spawns"]
-position = Vector2(360, 190)
-metadata/enemy_scene = "res://scenes/enemies/BioTurret.tscn"
