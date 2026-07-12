@@ -13,3 +13,4 @@ extends Resource
 @export var shot_speed_add: float = 0.0
 @export var range_add: float = 0.0
 @export var max_hp_add: float = 0.0
+@export var shot_scale_mult: float = 1.0
