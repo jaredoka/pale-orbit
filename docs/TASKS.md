@@ -97,7 +97,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   `tools/spritegen/` (palette.py, canvas.py, gen_player.py); player idle/run(3 facings)/hit/death; wire AnimatedSprite2D.
   Verify: read PNGs back for style/palette compliance; in-game animations at spec fps; user approves the look.
 
-- [ ] **T21 · Enemy + boss sheets** — **Opus** · Deps: T20 · Reqs: ART-1, ART-2
+- [x] **T21 · Enemy + boss sheets** — **Opus** · Deps: T20 · Reqs: ART-1, ART-2
   Sheets for 4 archetypes + Hive Queen (both phases' tint/telegraph frames); wire animations.
   Verify: as T20; silhouettes distinguishable at 1×.
 
