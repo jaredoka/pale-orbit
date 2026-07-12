@@ -11,7 +11,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Files: `project.godot`, `autoload/game_state.gd`, `autoload/audio_manager.gd` (stubs)
   Verify: project opens headless with no errors (`godot --headless --path . --quit-after 2`); InputMap actions listed in project.godot.
 
-- [ ] **T02 · GameState core** — Sonnet · Deps: T01 · Reqs: PLR-3, ITM-3
+- [x] **T02 · GameState core** — Sonnet · Deps: T01 · Reqs: PLR-3, ITM-3
   Implement `PlayerStats` + `ItemDef` Resources, GameState properties/signals/methods per ARCHITECTURE §3, `resources/stats/base_player_stats.tres`.
   Files: `scripts/player_stats.gd`, `scripts/item_def.gd`, `autoload/game_state.gd`
   Verify: headless test `tests/test_game_state.gd` — damage/heal clamping, `player_died` once, `apply_item` stat math.
