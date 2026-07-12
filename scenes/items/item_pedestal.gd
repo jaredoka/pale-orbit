@@ -34,5 +34,6 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	_taken = true
 	GameState.apply_item(item)
+	AudioManager.play_sfx(&"item")
 	$ItemIcon.visible = false
 	touch_area.set_deferred("monitoring", false)

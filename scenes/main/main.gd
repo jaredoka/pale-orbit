@@ -34,7 +34,33 @@ func _ready() -> void:
 	GameState.floor_rooms = floor_rooms
 	GameState.player_died.connect(_on_player_died)
 	GameState.boss_defeated.connect(_on_boss_defeated)
+	GameState.hp_changed.connect(_on_hp_changed_shake)
 	_enter_room(Vector2i.ZERO, Vector2i.ZERO)
+
+
+var _shake_time: float = 0.0
+var _shake_amp: float = 0.0
+var _prev_hp: float = -1.0
+
+
+func _process(delta: float) -> void:
+	if _shake_time > 0.0:
+		_shake_time -= delta
+		camera.offset = Vector2(
+			randf_range(-_shake_amp, _shake_amp), randf_range(-_shake_amp, _shake_amp))
+		if _shake_time <= 0.0:
+			camera.offset = Vector2.ZERO
+
+
+func shake(duration: float, amplitude: float) -> void:
+	_shake_time = duration
+	_shake_amp = amplitude
+
+
+func _on_hp_changed_shake(current: float, _max_hp: float) -> void:
+	if _prev_hp >= 0.0 and current < _prev_hp:
+		shake(0.25, 3.0)  # subtle hit shake
+	_prev_hp = current
 
 
 func _on_player_died() -> void:
@@ -42,6 +68,7 @@ func _on_player_died() -> void:
 
 
 func _on_boss_defeated() -> void:
+	shake(0.5, 5.0)
 	GameState.run_won.emit()
 	_show_end_screen(WIN_SCENE)
 

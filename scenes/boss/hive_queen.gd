@@ -46,6 +46,7 @@ func _behave(delta: float) -> void:
 		phase = Phase.ROAR
 		_roar_timer = ROAR_TIME
 		sprite.modulate = Color(3.0, 1.2, 1.2)  # roar telegraph tint
+		AudioManager.play_sfx(&"roar")
 
 	match phase:
 		Phase.ONE:

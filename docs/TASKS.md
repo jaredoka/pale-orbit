@@ -105,7 +105,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Station tileset (+biomass), heart/item icons, muzzle/impact/poof FX, door frames, heart HUD icons; retile rooms.
   Verify: full-run screenshot review with user; pixel grid uniform everywhere.
 
-- [ ] **T23 · SFX + juice pass** — Sonnet · Deps: T20 · Reqs: ENM-5, NFR-1
+- [x] **T23 · SFX + juice pass** — Sonnet · Deps: T20 · Reqs: ENM-5, NFR-1
   AudioManager real impl, SFX (shoot/hit/death/door/pickup/boss roar — generated or CC0), subtle screen shake, hit-flash shader, death poofs.
   Verify: play — every listed event has audible/visible feedback; 60 fps under projectile stress (NFR-1).
 
