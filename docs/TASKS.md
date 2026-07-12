@@ -34,7 +34,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   HUD in CanvasLayer, full/half/empty heart icons (placeholder), reacts to `hp_changed`.
   Verify: play — hearts track damage/heal including halves.
 
-- [ ] **T07 · EnemyBase + Skitterer** — Sonnet · Deps: T04, T05 · Reqs: ENM-1, ENM-5
+- [x] **T07 · EnemyBase + Skitterer** — Sonnet · Deps: T04, T05 · Reqs: ENM-1, ENM-5
   Base class per §5 (hp, hurtbox, flash, `died`), Skitterer chase+lunge.
   Verify: play in test room — kill it, take contact damage from it.
 
