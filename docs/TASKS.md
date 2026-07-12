@@ -65,7 +65,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   ≥4 hand-made NORMAL layouts mixing archetypes, chosen by seeded RNG.
   Verify: play two seeds — layout variety; same seed reproduces layouts.
 
-- [ ] **T14 · Treasure & boss room shells** — Sonnet · Deps: T12 · Reqs: GEN-3, ITM-2 (partial)
+- [x] **T14 · Treasure & boss room shells** — Sonnet · Deps: T12 · Reqs: GEN-3, ITM-2 (partial)
   TREASURE room with pedestal (item wiring in T17), BOSS room shell (boss in T15); distinct door frames/tiles for special rooms (placeholder tint ok).
   Verify: play — furthest dead-end is boss room, treasure room has a pedestal.
 
