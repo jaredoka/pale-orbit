@@ -16,7 +16,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Files: `scripts/player_stats.gd`, `scripts/item_def.gd`, `autoload/game_state.gd`
   Verify: headless test `tests/test_game_state.gd` — damage/heal clamping, `player_died` once, `apply_item` stat math.
 
-- [ ] **T03 · Player movement** — Sonnet · Deps: T01 · Reqs: PLR-1
+- [x] **T03 · Player movement** — Sonnet · Deps: T01 · Reqs: PLR-1
   Player scene per ARCHITECTURE §5; placeholder rectangle sprite; test room scene with walls (`scenes/rooms/TestRoom.tscn`, temporary).
   Verify: play — WASD 8-dir, normalized diagonals, wall sliding.
 
