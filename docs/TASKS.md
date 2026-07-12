@@ -57,7 +57,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Files: `scripts/floor_generator.gd`, `scripts/room_data.gd`, `tests/test_floor_generator.gd`
   Verify: `godot --headless --script res://tests/test_floor_generator.gd` exits 0.
 
-- [ ] **T12 · Main orchestrator + room instancing** — Sonnet · Deps: T10, T11 · Reqs: RM-3
+- [x] **T12 · Main orchestrator + room instancing** — Sonnet · Deps: T10, T11 · Reqs: RM-3
   `Main.tscn` per §5: generate floor from `GameState.rng_seed` (support `--seed=` arg), instance START, wire doors to transitions, reposition player, camera snap.
   Verify: play with `--seed=42` twice — same layout; walk the whole floor.
 
