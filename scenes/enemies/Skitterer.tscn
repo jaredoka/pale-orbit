@@ -1,9 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpaleorbitskitt1"]
+[gd_scene load_steps=3 format=3 uid="uid://cpaleorbitskitt1"]
 
 [ext_resource type="Script" path="res://scenes/enemies/skitterer.gd" id="1_skit"]
-
-[sub_resource type="PlaceholderTexture2D" id="tex_skit"]
-size = Vector2(10, 10)
 
 [sub_resource type="RectangleShape2D" id="shape_skit"]
 size = Vector2(9, 9)
@@ -14,9 +11,10 @@ collision_mask = 5
 script = ExtResource("1_skit")
 max_hp = 4.0
 contact_damage = 0.5
+sheet_dir = "res://assets/sprites/enemies/skitterer/"
+entity = "skitterer"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("tex_skit")
+[node name="Anim" type="AnimatedSprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("shape_skit")
