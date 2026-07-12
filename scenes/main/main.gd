@@ -83,4 +83,6 @@ func _enter_room(coord: Vector2i, entry_dir: Vector2i) -> void:
 
 
 func _on_door_entered(direction: Vector2i) -> void:
-	_enter_room(GameState.current_room + direction, direction)
+	# Door triggers arrive mid-physics-flush; defer so the room swap doesn't
+	# mutate physics state while queries are flushing.
+	_enter_room.call_deferred(GameState.current_room + direction, direction)
