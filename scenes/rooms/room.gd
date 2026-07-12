@@ -1,10 +1,14 @@
 extends Node2D
 ## Room: locks doors while enemies live, opens on clear, persists via GameState.cleared
-## (RM-1, RM-2). Spawn markers carry an "enemy_scene" metadata path.
+## (RM-1, RM-2). setup(data) must be called before add_child; doors without a
+## generated neighbor are sealed. Forwards door triggers to Main via door_entered.
+
+signal door_entered(direction: Vector2i)
 
 const TELEGRAPH_TIME := 0.4
 
-@export var coord: Vector2i = Vector2i.ZERO
+var data: RoomData = null
+var coord: Vector2i = Vector2i.ZERO
 
 var _alive: int = 0
 var _started: bool = false
@@ -13,11 +17,30 @@ var _started: bool = false
 @onready var spawns: Node2D = $Spawns
 
 
+func setup(p_data: RoomData) -> void:
+	data = p_data
+	coord = p_data.coord
+
+
 func _ready() -> void:
-	if GameState.cleared.get(coord, false):
+	for door in doors:
+		if data != null and not data.doors.has(coord + door.direction):
+			door.disable()
+		else:
+			door.player_entered.connect(func(dir: Vector2i) -> void: door_entered.emit(dir))
+	if GameState.cleared.get(coord, false) or _is_safe_room():
+		GameState.cleared[coord] = true
 		_open_all()
 	else:
 		_start_encounter()
+
+
+func _is_safe_room() -> bool:
+	if data == null:
+		return false
+	return data.type == FloorGenerator.RoomType.START \
+			or data.type == FloorGenerator.RoomType.TREASURE \
+			or data.type == FloorGenerator.RoomType.BOSS  # boss arrives in T15
 
 
 func _start_encounter() -> void:

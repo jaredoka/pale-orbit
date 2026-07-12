@@ -9,6 +9,7 @@ const COLOR_OPEN := Color(0.2, 0.7, 0.4)
 @export var direction: Vector2i = Vector2i.UP
 
 var locked: bool = true
+var disabled: bool = false  # no neighbor room behind this wall — permanently sealed
 
 @onready var blocker_shape: CollisionShape2D = $Blocker/CollisionShape2D
 @onready var visual: ColorRect = $Visual
@@ -25,8 +26,17 @@ func lock() -> void:
 
 
 func open() -> void:
+	if disabled:
+		return
 	locked = false
 	_apply_state()
+
+
+func disable() -> void:
+	disabled = true
+	locked = true
+	_apply_state()
+	visual.color = Color(0.25, 0.28, 0.34)  # blend into the wall
 
 
 func _apply_state() -> void:
