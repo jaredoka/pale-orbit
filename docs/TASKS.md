@@ -109,7 +109,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   AudioManager real impl, SFX (shoot/hit/death/door/pickup/boss roar — generated or CC0), subtle screen shake, hit-flash shader, death poofs.
   Verify: play — every listed event has audible/visible feedback; 60 fps under projectile stress (NFR-1).
 
-- [ ] **T24 · Slice acceptance pass** — **Opus** · Deps: T21, T22, T23 · Reqs: all
+- [x] **T24 · Slice acceptance pass** — **Opus** · Deps: T21, T22, T23 · Reqs: all
   Walk every requirement's AC; fix gaps; confirm HANDOFF "definition of done": full run spawn→item→boss kill with final art, no crashes.
   Verify: checklist of every requirement ID with pass/fail; user does a full playthrough.
 
