@@ -46,7 +46,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Split-once on death; children register with room alive-count.
   Verify: play — kill blob → 2 small blobs → no further splits.
 
-- [ ] **T10 · Room lock/clear cycle** — Sonnet · Deps: T07 · Reqs: RM-1, RM-2
+- [x] **T10 · Room lock/clear cycle** — Sonnet · Deps: T07 · Reqs: RM-1, RM-2
   Real `Room.tscn` + `Door.tscn` per §5; spawn markers; lock on entry, open on clear, `room_cleared`; cleared registry in GameState. Retire TestRoom.
   Verify: play — doors lock, clear opens them, Blob children keep room locked (with T09).
 
