@@ -14,6 +14,7 @@ var projectile_pool: ProjectilePool
 func _ready() -> void:
 	GameState.start_run()
 	projectile_pool = ProjectilePool.new(projectile_layer)
+	GameState.projectile_pool = projectile_pool
 	player.projectile_pool = projectile_pool
 	room_holder.add_child(TEST_ROOM.instantiate())
 	player.position = Vector2(240, 135)

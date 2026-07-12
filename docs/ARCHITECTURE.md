@@ -183,6 +183,8 @@ Room (Node2D)
 
 ## 6. Projectiles & pooling
 
+`Main` creates the pool and assigns it to `GameState.projectile_pool`; player and enemies fire through that reference (no node-path reaching).
+
 `ProjectilePool` (plain class) pre-instantiates **64 player + 64 enemy** projectiles under `ProjectileLayer`, all inactive. `func fire(config: Dictionary) -> void` activates one (position, direction, speed, damage, range, faction). Projectile deactivates on: wall hit, hurtbox hit, or traveled distance > range. **Never `queue_free()` pooled projectiles; never instantiate at fire time.**
 
 ## 7. Collision layers

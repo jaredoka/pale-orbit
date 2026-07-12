@@ -38,7 +38,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Base class per §5 (hp, hurtbox, flash, `died`), Skitterer chase+lunge.
   Verify: play in test room — kill it, take contact damage from it.
 
-- [ ] **T08 · Spitter + Bio-turret** — Sonnet · Deps: T07 · Reqs: ENM-2, ENM-3
+- [x] **T08 · Spitter + Bio-turret** — Sonnet · Deps: T07 · Reqs: ENM-2, ENM-3
   Enemy projectiles use the pool with `enemy_shots` faction.
   Verify: play — standoff behavior, burst timing, acid shots hurt player.
 
