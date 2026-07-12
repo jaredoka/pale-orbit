@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpaleorbitroom1"]
+
+[ext_resource type="Script" path="res://scenes/rooms/room.gd" id="1_room"]
+[ext_resource type="PackedScene" path="res://scenes/rooms/Door.tscn" id="2_door"]
+
+[sub_resource type="RectangleShape2D" id="wall_h_seg"]
+size = Vector2(224, 16)
+
+[sub_resource type="RectangleShape2D" id="wall_v_seg"]
+size = Vector2(16, 119)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_room")
+
+[node name="Floor" type="ColorRect" parent="."]
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0.09, 0.1, 0.13, 1)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="TopL" type="CollisionShape2D" parent="Walls"]
+position = Vector2(112, 8)
+shape = SubResource("wall_h_seg")
+
+[node name="TopR" type="CollisionShape2D" parent="Walls"]
+position = Vector2(368, 8)
+shape = SubResource("wall_h_seg")
+
+[node name="BottomL" type="CollisionShape2D" parent="Walls"]
+position = Vector2(112, 262)
+shape = SubResource("wall_h_seg")
+
+[node name="BottomR" type="CollisionShape2D" parent="Walls"]
+position = Vector2(368, 262)
+shape = SubResource("wall_h_seg")
+
+[node name="LeftT" type="CollisionShape2D" parent="Walls"]
+position = Vector2(8, 59.5)
+shape = SubResource("wall_v_seg")
+
+[node name="LeftB" type="CollisionShape2D" parent="Walls"]
+position = Vector2(8, 210.5)
+shape = SubResource("wall_v_seg")
+
+[node name="RightT" type="CollisionShape2D" parent="Walls"]
+position = Vector2(472, 59.5)
+shape = SubResource("wall_v_seg")
+
+[node name="RightB" type="CollisionShape2D" parent="Walls"]
+position = Vector2(472, 210.5)
+shape = SubResource("wall_v_seg")
+
+[node name="WallVisualTop" type="ColorRect" parent="."]
+offset_right = 480.0
+offset_bottom = 16.0
+color = Color(0.25, 0.28, 0.34, 1)
+
+[node name="WallVisualBottom" type="ColorRect" parent="."]
+offset_top = 254.0
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0.25, 0.28, 0.34, 1)
+
+[node name="WallVisualLeft" type="ColorRect" parent="."]
+offset_right = 16.0
+offset_bottom = 270.0
+color = Color(0.25, 0.28, 0.34, 1)
+
+[node name="WallVisualRight" type="ColorRect" parent="."]
+offset_left = 464.0
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0.25, 0.28, 0.34, 1)
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="DoorN" parent="Doors" instance=ExtResource("2_door")]
+position = Vector2(240, 8)
+direction = Vector2i(0, -1)
+
+[node name="DoorS" parent="Doors" instance=ExtResource("2_door")]
+position = Vector2(240, 262)
+direction = Vector2i(0, 1)
+
+[node name="DoorE" parent="Doors" instance=ExtResource("2_door")]
+position = Vector2(472, 135)
+rotation = 1.5707964
+direction = Vector2i(1, 0)
+
+[node name="DoorW" parent="Doors" instance=ExtResource("2_door")]
+position = Vector2(8, 135)
+rotation = 1.5707964
+direction = Vector2i(-1, 0)
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Spawn1" type="Marker2D" parent="Spawns"]
+position = Vector2(120, 80)
+metadata/enemy_scene = "res://scenes/enemies/Skitterer.tscn"
+
+[node name="Spawn2" type="Marker2D" parent="Spawns"]
+position = Vector2(360, 80)
+metadata/enemy_scene = "res://scenes/enemies/Spitter.tscn"
+
+[node name="Spawn3" type="Marker2D" parent="Spawns"]
+position = Vector2(120, 190)
+metadata/enemy_scene = "res://scenes/enemies/Blob.tscn"
+
+[node name="Spawn4" type="Marker2D" parent="Spawns"]
+position = Vector2(360, 190)
+metadata/enemy_scene = "res://scenes/enemies/BioTurret.tscn"

@@ -26,27 +26,27 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
 
 ## M1 — Combat & rooms
 
-- [ ] **T05 · Player health + i-frames** — Sonnet · Deps: T02, T03 · Reqs: PLR-3, PLR-4
+- [x] **T05 · Player health + i-frames** — Sonnet · Deps: T02, T03 · Reqs: PLR-3, PLR-4
   HurtBox, `GameState.damage_player`, 1 s i-frames with blink.
   Verify: play vs. a placeholder damage zone — one hit/second max, blink visible.
 
-- [ ] **T06 · HUD hearts** — Sonnet · Deps: T05 · Reqs: UI-1
+- [x] **T06 · HUD hearts** — Sonnet · Deps: T05 · Reqs: UI-1
   HUD in CanvasLayer, full/half/empty heart icons (placeholder), reacts to `hp_changed`.
   Verify: play — hearts track damage/heal including halves.
 
-- [ ] **T07 · EnemyBase + Skitterer** — Sonnet · Deps: T04, T05 · Reqs: ENM-1, ENM-5
+- [x] **T07 · EnemyBase + Skitterer** — Sonnet · Deps: T04, T05 · Reqs: ENM-1, ENM-5
   Base class per §5 (hp, hurtbox, flash, `died`), Skitterer chase+lunge.
   Verify: play in test room — kill it, take contact damage from it.
 
-- [ ] **T08 · Spitter + Bio-turret** — Sonnet · Deps: T07 · Reqs: ENM-2, ENM-3
+- [x] **T08 · Spitter + Bio-turret** — Sonnet · Deps: T07 · Reqs: ENM-2, ENM-3
   Enemy projectiles use the pool with `enemy_shots` faction.
   Verify: play — standoff behavior, burst timing, acid shots hurt player.
 
-- [ ] **T09 · Blob (splitter)** — Sonnet · Deps: T07 · Reqs: ENM-4
+- [x] **T09 · Blob (splitter)** — Sonnet · Deps: T07 · Reqs: ENM-4
   Split-once on death; children register with room alive-count.
   Verify: play — kill blob → 2 small blobs → no further splits.
 
-- [ ] **T10 · Room lock/clear cycle** — Sonnet · Deps: T07 · Reqs: RM-1, RM-2
+- [x] **T10 · Room lock/clear cycle** — Sonnet · Deps: T07 · Reqs: RM-1, RM-2
   Real `Room.tscn` + `Door.tscn` per §5; spawn markers; lock on entry, open on clear, `room_cleared`; cleared registry in GameState. Retire TestRoom.
   Verify: play — doors lock, clear opens them, Blob children keep room locked (with T09).
 

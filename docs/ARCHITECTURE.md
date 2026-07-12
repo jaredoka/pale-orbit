@@ -169,7 +169,7 @@ Archetypes override `_behave`:
 ### `Room.tscn` / `room.gd`
 ```
 Room (Node2D)
-├── TileMapLayer (walls + floor; walls on layer=walls)
+├── TileMapLayer (walls + floor; walls on layer=walls) — placeholder until M4: StaticBody2D wall segments + ColorRect visuals (T22 retiles with the real tileset)
 ├── Doors (Node2D)             # up to 4 Door instances, positioned N/E/S/W
 └── Spawns (Node2D)            # Marker2D children tagged with enemy scene paths
 ```
@@ -182,6 +182,8 @@ Room (Node2D)
 - `max_hp = 300`. Phase 1: radial 8-shot spreads every 2 s + spawn 2 Skitterers every 6 s (cap 4 alive). Phase 2 at ≤50% HP: brief roar telegraph, then spreads every 1.2 s become 12-shot, plus a line-charge attack at the player every 5 s (telegraphed 0.6 s). On death emit `died`, and Main emits `GameState.boss_defeated`.
 
 ## 6. Projectiles & pooling
+
+`Main` creates the pool and assigns it to `GameState.projectile_pool`; player and enemies fire through that reference (no node-path reaching).
 
 `ProjectilePool` (plain class) pre-instantiates **64 player + 64 enemy** projectiles under `ProjectileLayer`, all inactive. `func fire(config: Dictionary) -> void` activates one (position, direction, speed, damage, range, faction). Projectile deactivates on: wall hit, hurtbox hit, or traveled distance > range. **Never `queue_free()` pooled projectiles; never instantiate at fire time.**
 
