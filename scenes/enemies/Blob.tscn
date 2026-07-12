@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpaleorbitblob1"]
+
+[ext_resource type="Script" path="res://scenes/enemies/blob.gd" id="1_blob"]
+
+[sub_resource type="PlaceholderTexture2D" id="tex_blob"]
+size = Vector2(16, 14)
+
+[sub_resource type="RectangleShape2D" id="shape_blob"]
+size = Vector2(14, 12)
+
+[node name="Blob" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_blob")
+max_hp = 16.0
+contact_damage = 0.5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("tex_blob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_blob")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="HurtShape" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("shape_blob")

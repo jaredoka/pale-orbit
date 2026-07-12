@@ -42,7 +42,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Enemy projectiles use the pool with `enemy_shots` faction.
   Verify: play — standoff behavior, burst timing, acid shots hurt player.
 
-- [ ] **T09 · Blob (splitter)** — Sonnet · Deps: T07 · Reqs: ENM-4
+- [x] **T09 · Blob (splitter)** — Sonnet · Deps: T07 · Reqs: ENM-4
   Split-once on death; children register with room alive-count.
   Verify: play — kill blob → 2 small blobs → no further splits.
 
