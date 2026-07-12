@@ -71,23 +71,23 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
 
 ## M3 — Boss, items, game flow
 
-- [ ] **T15 · Hive Queen phase 1** — **Opus** · Deps: T12, T14 · Reqs: BOS-1
+- [x] **T15 · Hive Queen phase 1** — **Opus** · Deps: T12, T14 · Reqs: BOS-1
   Radial spreads (pool), Skitterer spawns with cap, boss HP bar (simple).
   Verify: play — pattern timings per spec; boss killable.
 
-- [ ] **T16 · Hive Queen phase 2 + tuning** — **Opus** · Deps: T15 · Reqs: BOS-2, BOS-3
+- [x] **T16 · Hive Queen phase 2 + tuning** — **Opus** · Deps: T15 · Reqs: BOS-2, BOS-3
   Phase transition at 50%, roar telegraph, 12-shot spreads, telegraphed line charge; `boss_defeated` on death. Playtest-tune to be winnable at base stats.
   Verify: user playtests — beats it at base stats within a few attempts; transition fires once.
 
-- [ ] **T17 · Pickups + item pedestal** — Sonnet · Deps: T02, T14 · Reqs: ITM-1, ITM-2, ITM-3, UI-1
+- [x] **T17 · Pickups + item pedestal** — Sonnet · Deps: T02, T14 · Reqs: ITM-1, ITM-2, ITM-3, UI-1
   Heart pickups (half/full, remain when HP full), pedestal grants ItemDef, 3 item `.tres` files, HUD item icons.
   Verify: play — each item's stat change is measurable; overheal impossible.
 
-- [ ] **T18 · Heart drops** — Sonnet · Deps: T10, T17 · Reqs: ITM-1
+- [x] **T18 · Heart drops** — Sonnet · Deps: T10, T17 · Reqs: ITM-1
   Seeded ~15% half-heart drop chance on room clear.
   Verify: play several rooms — drops occur; same seed → same drops.
 
-- [ ] **T19 · Win/lose flow** — Sonnet · Deps: T05, T16 · Reqs: UI-2, UI-3
+- [x] **T19 · Win/lose flow** — Sonnet · Deps: T05, T16 · Reqs: UI-2, UI-3
   GameOver + WinScreen, gameplay freeze, `restart` → fresh run with new seed and fully reset GameState.
   Verify: die → restart → stats/items/HP/floor all reset; win → victory screen.
 

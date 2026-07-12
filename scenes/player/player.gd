@@ -42,6 +42,7 @@ func _try_shoot() -> void:
 				damage = GameState.stats.damage,
 				range = GameState.stats.range,
 				faction = &"player",
+				scale = GameState.stats.shot_scale,
 			})
 			shoot_timer.start(1.0 / GameState.stats.fire_rate)
 			return

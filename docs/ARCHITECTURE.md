@@ -179,7 +179,7 @@ Room (Node2D)
 - v1 ships 4–6 hand-made spawn layouts for NORMAL rooms; `setup` picks one via the seeded RNG.
 
 ### `HiveQueen.tscn` (extends EnemyBase)
-- `max_hp = 300`. Phase 1: radial 8-shot spreads every 2 s + spawn 2 Skitterers every 6 s (cap 4 alive). Phase 2 at ≤50% HP: brief roar telegraph, then spreads every 1.2 s become 12-shot, plus a line-charge attack at the player every 5 s (telegraphed 0.6 s). On death emit `died`, and Main emits `GameState.boss_defeated`.
+- `max_hp = 300`. Phase 1: radial 8-shot spreads every 2 s + spawn 2 Skitterers every 6 s (cap 4 alive). Phase 2 at ≤50% HP: brief roar telegraph, then spreads every 1.2 s become 12-shot, plus a line-charge attack at the player every 5 s (telegraphed 0.6 s). On death emit `died`; the boss Room emits `GameState.boss_defeated` when its clear cycle completes (spawned Skitterers must also be dead).
 
 ## 6. Projectiles & pooling
 
@@ -207,7 +207,7 @@ InputMap actions only — **never poll raw keycodes** (mobile/gamepad depend on 
 
 ## 9. Data-driven items
 
-`ItemDef` (Resource): `id: StringName`, `display_name: String`, `description: String`, `icon: Texture2D`, and stat deltas `speed_add`, `fire_rate_mult`, `damage_add`, `shot_speed_add`, `range_add`, `max_hp_add: float`. `GameState.apply_item()` folds deltas into `stats` (additive first, then multiplicative) and heals any `max_hp_add`.
+`ItemDef` (Resource): `id: StringName`, `display_name: String`, `description: String`, `icon: Texture2D`, and stat deltas `speed_add`, `fire_rate_mult`, `damage_add`, `shot_speed_add`, `range_add`, `max_hp_add`, `shot_scale_mult: float` (Plasma Focus's larger shots). `GameState.apply_item()` folds deltas into `stats` (additive first, then multiplicative) and heals any `max_hp_add`.
 
 `PlayerStats` (Resource): `speed = 90.0` px/s, `fire_rate = 2.5` shots/s, `damage = 3.5`, `shot_speed = 200.0` px/s, `range = 180.0` px, `max_hp = 3.0` hearts.
 

@@ -31,6 +31,7 @@ func activate(config: Dictionary) -> void:
 	damage = config.damage
 	max_range = config.range
 	faction = config.faction
+	scale = Vector2.ONE * float(config.get("scale", 1.0))
 	if faction == &"player":
 		collision_layer = LAYER_PLAYER_SHOTS
 		collision_mask = MASK_WALLS | MASK_ENEMIES

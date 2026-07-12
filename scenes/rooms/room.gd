@@ -49,6 +49,8 @@ var _alive: int = 0
 var _started: bool = false
 
 const PEDESTAL_SCENE := preload("res://scenes/items/ItemPedestal.tscn")
+const PICKUP_SCENE := preload("res://scenes/items/Pickup.tscn")
+const HEART_DROP_CHANCE := 0.15
 
 ## Placeholder floor tints for special rooms until the M4 tileset (T22).
 const FLOOR_TINTS := {
@@ -87,12 +89,11 @@ func _is_safe_room() -> bool:
 	if data == null:
 		return false
 	return data.type == FloorGenerator.RoomType.START \
-			or data.type == FloorGenerator.RoomType.TREASURE \
-			or data.type == FloorGenerator.RoomType.BOSS  # boss arrives in T15
+			or data.type == FloorGenerator.RoomType.TREASURE
 
 
 func _start_encounter() -> void:
-	var layout: Array = _pick_layout()
+	var layout: Array = _boss_layout() if _is_boss_room() else _pick_layout()
 	if layout.is_empty():
 		_clear_room()
 		return
@@ -107,6 +108,14 @@ func _start_encounter() -> void:
 	_started = true
 	if _alive == 0:
 		_clear_room()
+
+
+func _is_boss_room() -> bool:
+	return data != null and data.type == FloorGenerator.RoomType.BOSS
+
+
+func _boss_layout() -> Array:
+	return [{pos = Vector2(240, 100), scene = "res://scenes/boss/HiveQueen.tscn"}]
 
 
 ## Deterministic per run seed and room coord (NFR-4).
@@ -132,6 +141,21 @@ func _clear_room() -> void:
 	_open_all()
 	GameState.cleared[coord] = true
 	GameState.room_cleared.emit(coord)
+	if _started and _is_boss_room():
+		GameState.boss_defeated.emit()
+	if _started:
+		_maybe_drop_heart()
+
+
+## Seeded ~15% half-heart drop on combat clear (ITM-1, NFR-4).
+func _maybe_drop_heart() -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash([GameState.rng_seed, coord, "heart_drop"])
+	if rng.randf() < HEART_DROP_CHANCE:
+		var pickup := PICKUP_SCENE.instantiate()
+		pickup.heal_amount = 0.5
+		pickup.position = Vector2(240, 135)
+		add_child(pickup)
 
 
 func _lock_all() -> void:
