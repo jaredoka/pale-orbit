@@ -93,7 +93,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
 
 ## M4 — Art & juice (use `pixel-art-sheets` skill)
 
-- [ ] **T20 · Sprite generator toolkit + player sheets** — **Opus** · Deps: T19 · Reqs: ART-1, ART-2
+- [x] **T20 · Sprite generator toolkit + player sheets** — **Opus** · Deps: T19 · Reqs: ART-1, ART-2
   `tools/spritegen/` (palette.py, canvas.py, gen_player.py); player idle/run(3 facings)/hit/death; wire AnimatedSprite2D.
   Verify: read PNGs back for style/palette compliance; in-game animations at spec fps; user approves the look.
 
