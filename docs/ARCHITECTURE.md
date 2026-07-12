@@ -170,7 +170,7 @@ Archetypes override `_behave`:
 ### `Room.tscn` / `room.gd`
 ```
 Room (Node2D)
-├── TileMapLayer (walls + floor; walls on layer=walls) — placeholder until M4: StaticBody2D wall segments + ColorRect visuals (T22 retiles with the real tileset)
+├── TileMapLayer (walls + floor; walls on layer=walls) — placeholder until M4: visual TileMapLayer painted at runtime by TilePainter from station_tileset.png; collision on StaticBody2D wall segments
 ├── Doors (Node2D)             # up to 4 Door instances, positioned N/E/S/W
 └── (spawn layouts are LAYOUTS constants in room.gd, picked by seeded RNG — no marker nodes)
 ```

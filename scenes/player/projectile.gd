@@ -17,8 +17,18 @@ var faction: StringName = &"player"
 
 var _traveled: float = 0.0
 
+static var _shared_frames: SpriteFrames = null
+
+@onready var anim: AnimatedSprite2D = $Anim
+
 
 func _ready() -> void:
+	if _shared_frames == null:
+		_shared_frames = SpriteSheets.build({
+			&"plasma": {path = "res://assets/sprites/fx/plasma_bolt_2.png", frames = 2, fps = 8.0},
+			&"acid": {path = "res://assets/sprites/fx/acid_glob_2.png", frames = 2, fps = 8.0},
+		})
+	anim.sprite_frames = _shared_frames
 	body_entered.connect(_on_body_entered)
 	area_entered.connect(_on_area_entered)
 	deactivate()
@@ -32,6 +42,7 @@ func activate(config: Dictionary) -> void:
 	max_range = config.range
 	faction = config.faction
 	scale = Vector2.ONE * float(config.get("scale", 1.0))
+	anim.play(&"plasma" if faction == &"player" else &"acid")
 	if faction == &"player":
 		collision_layer = LAYER_PLAYER_SHOTS
 		collision_mask = MASK_WALLS | MASK_ENEMIES

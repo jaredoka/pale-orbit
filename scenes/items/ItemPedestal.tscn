@@ -1,9 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpaleorbitpedes"]
 
 [ext_resource type="Script" path="res://scenes/items/item_pedestal.gd" id="1_ped"]
-
-[sub_resource type="PlaceholderTexture2D" id="tex_ped"]
-size = Vector2(12, 18)
+[ext_resource type="Texture2D" path="res://assets/sprites/items/pedestal.png" id="2_tex"]
 
 [sub_resource type="RectangleShape2D" id="shape_ped"]
 size = Vector2(16, 20)
@@ -12,7 +10,10 @@ size = Vector2(16, 20)
 script = ExtResource("1_ped")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("tex_ped")
+texture = ExtResource("2_tex")
+
+[node name="ItemIcon" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
 
 [node name="TouchArea" type="Area2D" parent="."]
 collision_layer = 32

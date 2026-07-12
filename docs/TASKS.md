@@ -101,7 +101,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Sheets for 4 archetypes + Hive Queen (both phases' tint/telegraph frames); wire animations.
   Verify: as T20; silhouettes distinguishable at 1×.
 
-- [ ] **T22 · Tileset, items, FX, UI art** — **Opus** · Deps: T20 · Reqs: ART-1, ART-2, ART-3
+- [x] **T22 · Tileset, items, FX, UI art** — **Opus** · Deps: T20 · Reqs: ART-1, ART-2, ART-3
   Station tileset (+biomass), heart/item icons, muzzle/impact/poof FX, door frames, heart HUD icons; retile rooms.
   Verify: full-run screenshot review with user; pixel grid uniform everywhere.
 
