@@ -19,4 +19,5 @@ func _on_body_entered(body: Node2D) -> void:
 	if GameState.current_hp >= GameState.max_hp:
 		return  # stays on the floor
 	GameState.heal_player(heal_amount)
+	AudioManager.play_sfx(&"pickup")
 	queue_free()

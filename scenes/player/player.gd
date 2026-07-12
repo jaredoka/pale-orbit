@@ -25,6 +25,12 @@ func _ready() -> void:
 		&"death": {path = SHEETS + "player_death_4.png", frames = 4, fps = 10.0, loop = false},
 	})
 	sprite.play(&"idle")
+	var muzzle: AnimatedSprite2D = $Muzzle
+	muzzle.sprite_frames = SpriteSheets.build({
+		&"flash": {path = "res://assets/sprites/fx/muzzle_flash_3.png", frames = 3, fps = 20.0, loop = false},
+	})
+	muzzle.animation_finished.connect(func() -> void: muzzle.visible = false)
+	muzzle.visible = false
 
 
 func _update_anim(dir: Vector2) -> void:
@@ -73,7 +79,16 @@ func _try_shoot() -> void:
 				scale = GameState.stats.shot_scale,
 			})
 			shoot_timer.start(1.0 / GameState.stats.fire_rate)
+			AudioManager.play_sfx(&"shoot")
+			_flash_muzzle(SHOOT_ACTIONS[action])
 			return
+
+
+func _flash_muzzle(dir: Vector2) -> void:
+	var muzzle: AnimatedSprite2D = $Muzzle
+	muzzle.position = dir * 10.0
+	muzzle.visible = true
+	muzzle.play(&"flash")
 
 
 func _update_iframes(delta: float) -> void:
@@ -100,3 +115,4 @@ func take_hit(amount: float) -> void:
 	GameState.damage_player(amount)
 	_iframes = IFRAME_TIME
 	sprite.play(&"hit")
+	AudioManager.play_sfx(&"hurt")

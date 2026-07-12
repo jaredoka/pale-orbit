@@ -141,6 +141,8 @@ func _on_enemy_died(_enemy: EnemyBase) -> void:
 
 
 func _clear_room() -> void:
+	if _started:
+		AudioManager.play_sfx(&"door")
 	_open_all()
 	GameState.cleared[coord] = true
 	GameState.room_cleared.emit(coord)
