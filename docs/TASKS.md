@@ -30,7 +30,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   HurtBox, `GameState.damage_player`, 1 s i-frames with blink.
   Verify: play vs. a placeholder damage zone — one hit/second max, blink visible.
 
-- [ ] **T06 · HUD hearts** — Sonnet · Deps: T05 · Reqs: UI-1
+- [x] **T06 · HUD hearts** — Sonnet · Deps: T05 · Reqs: UI-1
   HUD in CanvasLayer, full/half/empty heart icons (placeholder), reacts to `hp_changed`.
   Verify: play — hearts track damage/heal including halves.
 

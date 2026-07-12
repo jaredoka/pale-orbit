@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpaleorbitmain1"]
+[gd_scene load_steps=4 format=3 uid="uid://cpaleorbitmain1"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="3_hud"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
@@ -15,3 +16,5 @@ script = ExtResource("1_main")
 [node name="ProjectileLayer" type="Node2D" parent="."]
 
 [node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UILayer" instance=ExtResource("3_hud")]
