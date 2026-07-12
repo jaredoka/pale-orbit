@@ -1,0 +1,11 @@
+# Godot
+.godot/
+*.import
+export_presets.cfg
+
+# Godot editor binaries (not project files)
+Godot_v*.exe
+
+# OS
+Thumbs.db
+.DS_Store
