@@ -62,9 +62,16 @@ func _physics_process(delta: float) -> void:
 		deactivate()
 
 
-func _on_body_entered(_body: Node2D) -> void:
-	if active:
-		deactivate()
+func _on_body_entered(body: Node2D) -> void:
+	if not active:
+		return
+	# Damage is applied here (single source of hit logic): deactivating first
+	# would race the target's own overlap checks and drop the hit.
+	if faction == &"player" and body.has_method("take_damage"):
+		body.take_damage(damage)
+	elif faction == &"enemy" and body.is_in_group("player"):
+		body.take_hit(damage)
+	deactivate()
 
 
 func _on_area_entered(_area: Area2D) -> void:

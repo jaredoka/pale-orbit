@@ -121,7 +121,9 @@ func _spawn_skitterers() -> void:
 		if _minions.size() >= SPAWN_CAP:
 			return
 		var minion: EnemyBase = load(SKITTERER_SCENE).instantiate()
-		minion.position = position + Vector2(-24 if i == 0 else 24, 20)
+		var spawn_pos := position + Vector2(-24 if i == 0 else 24, 20)
+		minion.position = Vector2(
+			clampf(spawn_pos.x, 32.0, 448.0), clampf(spawn_pos.y, 32.0, 238.0))
 		get_parent().add_child(minion)
 		_minions.append(minion)
 		spawned.emit(minion)

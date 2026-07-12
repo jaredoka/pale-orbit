@@ -17,7 +17,6 @@ var hp: float
 
 func _ready() -> void:
 	hp = max_hp
-	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 
 
 func _physics_process(delta: float) -> void:
@@ -51,9 +50,3 @@ func _behave(_delta: float) -> void:
 
 func _player() -> Node2D:
 	return get_tree().get_first_node_in_group("player")
-
-
-func _on_hurtbox_area_entered(area: Area2D) -> void:
-	# Hurtbox mask = player_shots only, so any entering area is a player projectile.
-	if area.get(&"active"):
-		take_damage(area.damage)

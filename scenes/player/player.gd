@@ -57,19 +57,17 @@ func _update_iframes(delta: float) -> void:
 
 
 ## Poll overlaps so standing inside an enemy re-damages once per i-frame window.
+## (Enemy projectiles damage via projectile.gd body contact.)
 func _check_contact_damage() -> void:
 	for body in hurtbox.get_overlapping_bodies():
 		var dmg: float = body.get(&"contact_damage") if body.get(&"contact_damage") != null else 0.0
 		if dmg > 0.0:
-			_take_hit(dmg)
-			return
-	for area in hurtbox.get_overlapping_areas():
-		if area.get(&"active") and area.get(&"faction") == &"enemy":
-			area.deactivate()
-			_take_hit(area.damage)
+			take_hit(dmg)
 			return
 
 
-func _take_hit(amount: float) -> void:
+func take_hit(amount: float) -> void:
+	if _iframes > 0.0:
+		return
 	GameState.damage_player(amount)
 	_iframes = IFRAME_TIME
