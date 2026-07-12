@@ -75,7 +75,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Radial spreads (pool), Skitterer spawns with cap, boss HP bar (simple).
   Verify: play — pattern timings per spec; boss killable.
 
-- [ ] **T16 · Hive Queen phase 2 + tuning** — **Opus** · Deps: T15 · Reqs: BOS-2, BOS-3
+- [x] **T16 · Hive Queen phase 2 + tuning** — **Opus** · Deps: T15 · Reqs: BOS-2, BOS-3
   Phase transition at 50%, roar telegraph, 12-shot spreads, telegraphed line charge; `boss_defeated` on death. Playtest-tune to be winnable at base stats.
   Verify: user playtests — beats it at base stats within a few attempts; transition fires once.
 
