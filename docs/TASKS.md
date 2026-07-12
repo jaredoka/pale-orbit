@@ -87,7 +87,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
   Seeded ~15% half-heart drop chance on room clear.
   Verify: play several rooms — drops occur; same seed → same drops.
 
-- [ ] **T19 · Win/lose flow** — Sonnet · Deps: T05, T16 · Reqs: UI-2, UI-3
+- [x] **T19 · Win/lose flow** — Sonnet · Deps: T05, T16 · Reqs: UI-2, UI-3
   GameOver + WinScreen, gameplay freeze, `restart` → fresh run with new seed and fully reset GameState.
   Verify: die → restart → stats/items/HP/floor all reset; win → victory screen.
 

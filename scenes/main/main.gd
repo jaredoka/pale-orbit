@@ -3,6 +3,8 @@ extends Node2D
 ## handles door transitions with camera snap (RM-3). Supports `-- --seed=N`.
 
 const ROOM_SCENE := preload("res://scenes/rooms/Room.tscn")
+const GAME_OVER_SCENE := preload("res://scenes/ui/GameOver.tscn")
+const WIN_SCENE := preload("res://scenes/ui/WinScreen.tscn")
 const ROOM_SIZE := Vector2(480, 270)
 const DOOR_INSET := 30.0
 
@@ -29,7 +31,23 @@ func _ready() -> void:
 	GameState.projectile_pool = projectile_pool
 	player.projectile_pool = projectile_pool
 	floor_rooms = FloorGenerator.new().generate(GameState.rng_seed)
+	GameState.player_died.connect(_on_player_died)
+	GameState.boss_defeated.connect(_on_boss_defeated)
 	_enter_room(Vector2i.ZERO, Vector2i.ZERO)
+
+
+func _on_player_died() -> void:
+	_show_end_screen(GAME_OVER_SCENE)
+
+
+func _on_boss_defeated() -> void:
+	GameState.run_won.emit()
+	_show_end_screen(WIN_SCENE)
+
+
+func _show_end_screen(scene: PackedScene) -> void:
+	$UILayer.add_child(scene.instantiate())
+	get_tree().paused = true
 
 
 func _seed_from_args() -> int:
