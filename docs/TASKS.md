@@ -71,7 +71,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
 
 ## M3 — Boss, items, game flow
 
-- [ ] **T15 · Hive Queen phase 1** — **Opus** · Deps: T12, T14 · Reqs: BOS-1
+- [x] **T15 · Hive Queen phase 1** — **Opus** · Deps: T12, T14 · Reqs: BOS-1
   Radial spreads (pool), Skitterer spawns with cap, boss HP bar (simple).
   Verify: play — pattern timings per spec; boss killable.
 

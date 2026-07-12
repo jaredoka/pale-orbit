@@ -87,12 +87,11 @@ func _is_safe_room() -> bool:
 	if data == null:
 		return false
 	return data.type == FloorGenerator.RoomType.START \
-			or data.type == FloorGenerator.RoomType.TREASURE \
-			or data.type == FloorGenerator.RoomType.BOSS  # boss arrives in T15
+			or data.type == FloorGenerator.RoomType.TREASURE
 
 
 func _start_encounter() -> void:
-	var layout: Array = _pick_layout()
+	var layout: Array = _boss_layout() if _is_boss_room() else _pick_layout()
 	if layout.is_empty():
 		_clear_room()
 		return
@@ -107,6 +106,14 @@ func _start_encounter() -> void:
 	_started = true
 	if _alive == 0:
 		_clear_room()
+
+
+func _is_boss_room() -> bool:
+	return data != null and data.type == FloorGenerator.RoomType.BOSS
+
+
+func _boss_layout() -> Array:
+	return [{pos = Vector2(240, 100), scene = "res://scenes/boss/HiveQueen.tscn"}]
 
 
 ## Deterministic per run seed and room coord (NFR-4).
@@ -132,6 +139,8 @@ func _clear_room() -> void:
 	_open_all()
 	GameState.cleared[coord] = true
 	GameState.room_cleared.emit(coord)
+	if _started and _is_boss_room():
+		GameState.boss_defeated.emit()
 
 
 func _lock_all() -> void:

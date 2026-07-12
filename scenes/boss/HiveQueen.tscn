@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpaleorbitqueen"]
+
+[ext_resource type="Script" path="res://scenes/boss/hive_queen.gd" id="1_queen"]
+[ext_resource type="Script" path="res://scenes/boss/hive_queen_hp_bar.gd" id="2_bar"]
+
+[sub_resource type="PlaceholderTexture2D" id="tex_queen"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="shape_queen"]
+size = Vector2(28, 28)
+
+[node name="HiveQueen" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_queen")
+max_hp = 300.0
+contact_damage = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("tex_queen")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_queen")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="HurtShape" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("shape_queen")
+
+[node name="HpBar" type="Node2D" parent="."]
+position = Vector2(0, -24)
+script = ExtResource("2_bar")
