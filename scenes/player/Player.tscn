@@ -1,9 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpaleorbitplayer"]
+[gd_scene load_steps=3 format=3 uid="uid://cpaleorbitplayer"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_player"]
-
-[sub_resource type="PlaceholderTexture2D" id="tex_player"]
-size = Vector2(12, 16)
 
 [sub_resource type="RectangleShape2D" id="shape_player"]
 size = Vector2(10, 12)
@@ -13,8 +10,10 @@ collision_layer = 2
 collision_mask = 1
 script = ExtResource("1_player")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("tex_player")
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+
+[node name="Muzzle" type="AnimatedSprite2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

@@ -4,12 +4,13 @@ extends Area2D
 
 @export var heal_amount: float = 0.5
 
-@onready var visual: ColorRect = $Visual
+@onready var visual: Sprite2D = $Visual
 
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
-	visual.color = Color(0.9, 0.25, 0.3) if heal_amount >= 1.0 else Color(0.95, 0.5, 0.55)
+	visual.texture = load("res://assets/ui/heart_full.png" if heal_amount >= 1.0
+			else "res://assets/ui/heart_half.png")
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -18,4 +19,5 @@ func _on_body_entered(body: Node2D) -> void:
 	if GameState.current_hp >= GameState.max_hp:
 		return  # stays on the floor
 	GameState.heal_player(heal_amount)
+	AudioManager.play_sfx(&"pickup")
 	queue_free()

@@ -15,7 +15,7 @@ const ROAR_TIME := 0.8
 const P1_SPREAD_INTERVAL := 2.0
 const P2_SPREAD_INTERVAL := 1.2
 const CHARGE_INTERVAL := 5.0
-const CHARGE_TELEGRAPH := 0.6
+const CHARGE_TELEGRAPH := 2.0
 const CHARGE_SPEED := 230.0
 const CHARGE_TIME := 0.55
 
@@ -46,6 +46,7 @@ func _behave(delta: float) -> void:
 		phase = Phase.ROAR
 		_roar_timer = ROAR_TIME
 		sprite.modulate = Color(3.0, 1.2, 1.2)  # roar telegraph tint
+		AudioManager.play_sfx(&"roar")
 
 	match phase:
 		Phase.ONE:

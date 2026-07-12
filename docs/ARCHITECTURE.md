@@ -170,7 +170,7 @@ Archetypes override `_behave`:
 ### `Room.tscn` / `room.gd`
 ```
 Room (Node2D)
-├── TileMapLayer (walls + floor; walls on layer=walls) — placeholder until M4: StaticBody2D wall segments + ColorRect visuals (T22 retiles with the real tileset)
+├── TileMapLayer (walls + floor; walls on layer=walls) — placeholder until M4: visual TileMapLayer painted at runtime by TilePainter from station_tileset.png; collision on StaticBody2D wall segments
 ├── Doors (Node2D)             # up to 4 Door instances, positioned N/E/S/W
 └── (spawn layouts are LAYOUTS constants in room.gd, picked by seeded RNG — no marker nodes)
 ```
@@ -180,7 +180,7 @@ Room (Node2D)
 - v1 ships 4–6 hand-made spawn layouts for NORMAL rooms; `setup` picks one via the seeded RNG.
 
 ### `HiveQueen.tscn` (extends EnemyBase)
-- `max_hp = 250`. Phase 1: radial 8-shot spreads every 2 s + spawn 2 Skitterers every 6 s (cap 4 alive). Phase 2 at ≤50% HP: brief roar telegraph, then spreads every 1.2 s become 12-shot, plus a line-charge attack at the player every 5 s (telegraphed 0.6 s). On death emit `died`; the boss Room emits `GameState.boss_defeated` when its clear cycle completes (spawned Skitterers must also be dead).
+- `max_hp = 250`. Phase 1: radial 8-shot spreads every 2 s + spawn 2 Skitterers every 6 s (cap 4 alive). Phase 2 at ≤50% HP: brief roar telegraph, then spreads every 1.2 s become 12-shot, plus a line-charge attack at the player every 5 s (telegraphed 2.0 s). On death emit `died`; the boss Room emits `GameState.boss_defeated` when its clear cycle completes (spawned Skitterers must also be dead).
 
 ## 6. Projectiles & pooling
 

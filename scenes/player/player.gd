@@ -9,8 +9,41 @@ var projectile_pool: ProjectilePool
 var _iframes: float = 0.0
 
 @onready var shoot_timer: Timer = $ShootTimer
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Anim
 @onready var hurtbox: Area2D = $HurtBox
+
+const SHEETS := "res://assets/sprites/player/"
+
+
+func _ready() -> void:
+	sprite.sprite_frames = SpriteSheets.build({
+		&"idle": {path = SHEETS + "player_idle_2.png", frames = 2, fps = 4.0},
+		&"run_down": {path = SHEETS + "player_run_down_6.png", frames = 6, fps = 10.0},
+		&"run_up": {path = SHEETS + "player_run_up_6.png", frames = 6, fps = 10.0},
+		&"run_side": {path = SHEETS + "player_run_side_6.png", frames = 6, fps = 10.0},
+		&"hit": {path = SHEETS + "player_hit_2.png", frames = 2, fps = 12.0, loop = false},
+		&"death": {path = SHEETS + "player_death_4.png", frames = 4, fps = 10.0, loop = false},
+	})
+	sprite.play(&"idle")
+	var muzzle: AnimatedSprite2D = $Muzzle
+	muzzle.sprite_frames = SpriteSheets.build({
+		&"flash": {path = "res://assets/sprites/fx/muzzle_flash_3.png", frames = 3, fps = 20.0, loop = false},
+	})
+	muzzle.animation_finished.connect(func() -> void: muzzle.visible = false)
+	muzzle.visible = false
+
+
+func _update_anim(dir: Vector2) -> void:
+	if sprite.animation == &"hit" and sprite.is_playing():
+		return
+	if dir == Vector2.ZERO:
+		sprite.play(&"idle")
+	elif absf(dir.x) >= absf(dir.y):
+		sprite.play(&"run_side")
+		sprite.flip_h = dir.x < 0.0
+	else:
+		sprite.flip_h = false
+		sprite.play(&"run_up" if dir.y < 0.0 else &"run_down")
 
 const SHOOT_ACTIONS := {
 	&"shoot_up": Vector2.UP,
@@ -24,6 +57,7 @@ func _physics_process(delta: float) -> void:
 	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = dir * GameState.stats.speed
 	move_and_slide()
+	_update_anim(dir)
 	_try_shoot()
 	_update_iframes(delta)
 	if _iframes <= 0.0:
@@ -45,7 +79,16 @@ func _try_shoot() -> void:
 				scale = GameState.stats.shot_scale,
 			})
 			shoot_timer.start(1.0 / GameState.stats.fire_rate)
+			AudioManager.play_sfx(&"shoot")
+			_flash_muzzle(SHOOT_ACTIONS[action])
 			return
+
+
+func _flash_muzzle(dir: Vector2) -> void:
+	var muzzle: AnimatedSprite2D = $Muzzle
+	muzzle.position = dir * 10.0
+	muzzle.visible = true
+	muzzle.play(&"flash")
 
 
 func _update_iframes(delta: float) -> void:
@@ -71,3 +114,5 @@ func take_hit(amount: float) -> void:
 		return
 	GameState.damage_player(amount)
 	_iframes = IFRAME_TIME
+	sprite.play(&"hit")
+	AudioManager.play_sfx(&"hurt")

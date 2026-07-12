@@ -93,23 +93,23 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
 
 ## M4 — Art & juice (use `pixel-art-sheets` skill)
 
-- [ ] **T20 · Sprite generator toolkit + player sheets** — **Opus** · Deps: T19 · Reqs: ART-1, ART-2
+- [x] **T20 · Sprite generator toolkit + player sheets** — **Opus** · Deps: T19 · Reqs: ART-1, ART-2
   `tools/spritegen/` (palette.py, canvas.py, gen_player.py); player idle/run(3 facings)/hit/death; wire AnimatedSprite2D.
   Verify: read PNGs back for style/palette compliance; in-game animations at spec fps; user approves the look.
 
-- [ ] **T21 · Enemy + boss sheets** — **Opus** · Deps: T20 · Reqs: ART-1, ART-2
+- [x] **T21 · Enemy + boss sheets** — **Opus** · Deps: T20 · Reqs: ART-1, ART-2
   Sheets for 4 archetypes + Hive Queen (both phases' tint/telegraph frames); wire animations.
   Verify: as T20; silhouettes distinguishable at 1×.
 
-- [ ] **T22 · Tileset, items, FX, UI art** — **Opus** · Deps: T20 · Reqs: ART-1, ART-2, ART-3
+- [x] **T22 · Tileset, items, FX, UI art** — **Opus** · Deps: T20 · Reqs: ART-1, ART-2, ART-3
   Station tileset (+biomass), heart/item icons, muzzle/impact/poof FX, door frames, heart HUD icons; retile rooms.
   Verify: full-run screenshot review with user; pixel grid uniform everywhere.
 
-- [ ] **T23 · SFX + juice pass** — Sonnet · Deps: T20 · Reqs: ENM-5, NFR-1
+- [x] **T23 · SFX + juice pass** — Sonnet · Deps: T20 · Reqs: ENM-5, NFR-1
   AudioManager real impl, SFX (shoot/hit/death/door/pickup/boss roar — generated or CC0), subtle screen shake, hit-flash shader, death poofs.
   Verify: play — every listed event has audible/visible feedback; 60 fps under projectile stress (NFR-1).
 
-- [ ] **T24 · Slice acceptance pass** — **Opus** · Deps: T21, T22, T23 · Reqs: all
+- [x] **T24 · Slice acceptance pass** — **Opus** · Deps: T21, T22, T23 · Reqs: all
   Walk every requirement's AC; fix gaps; confirm HANDOFF "definition of done": full run spawn→item→boss kill with final art, no crashes.
   Verify: checklist of every requirement ID with pass/fail; user does a full playthrough.
 
