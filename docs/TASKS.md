@@ -6,7 +6,7 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
 
 ## M0 — Scaffold & player
 
-- [ ] **T01 · Project scaffold + settings** — Sonnet · Deps: — · Reqs: ART-3, NFR-2
+- [x] **T01 · Project scaffold + settings** — Sonnet · Deps: — · Reqs: ART-3, NFR-2
   Create Godot project with settings table from ARCHITECTURE §1, folder layout §2, empty autoloads registered, InputMap actions §8.
   Files: `project.godot`, `autoload/game_state.gd`, `autoload/audio_manager.gd` (stubs)
   Verify: project opens headless with no errors (`godot --headless --path . --quit-after 2`); InputMap actions listed in project.godot.
