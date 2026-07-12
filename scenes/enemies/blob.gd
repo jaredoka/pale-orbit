@@ -20,7 +20,10 @@ func _die() -> void:
 			child.can_split = false
 			child.max_hp = max_hp * 0.4
 			child.scale = Vector2(0.5, 0.5)
-			child.global_position = global_position + offset
+			# Clamp into the room interior so children never spawn inside a wall.
+			child.position = Vector2(
+				clampf(position.x + offset.x, 32.0, 448.0),
+				clampf(position.y + offset.y, 32.0, 238.0))
 			get_parent().add_child(child)
 			spawned.emit(child)
 	super()

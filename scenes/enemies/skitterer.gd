@@ -1,8 +1,8 @@
 extends EnemyBase
 ## Skitterer: fast chaser; brief overshoot lunge when within 48 px (ENM-1).
 
-const CHASE_SPEED := 70.0
-const LUNGE_SPEED := 160.0
+const CHASE_SPEED := 55.0
+const LUNGE_SPEED := 120.0
 const LUNGE_RANGE := 48.0
 const LUNGE_TIME := 0.35
 const LUNGE_COOLDOWN := 1.2
