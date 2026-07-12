@@ -43,6 +43,7 @@ func apply_item(item: ItemDef) -> void:
 	stats.range += item.range_add
 	stats.max_hp += item.max_hp_add
 	stats.fire_rate *= item.fire_rate_mult
+	stats.shot_scale *= item.shot_scale_mult
 	if item.max_hp_add > 0.0:
 		max_hp = stats.max_hp
 		current_hp = minf(current_hp + item.max_hp_add, max_hp)

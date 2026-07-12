@@ -207,7 +207,7 @@ InputMap actions only — **never poll raw keycodes** (mobile/gamepad depend on 
 
 ## 9. Data-driven items
 
-`ItemDef` (Resource): `id: StringName`, `display_name: String`, `description: String`, `icon: Texture2D`, and stat deltas `speed_add`, `fire_rate_mult`, `damage_add`, `shot_speed_add`, `range_add`, `max_hp_add: float`. `GameState.apply_item()` folds deltas into `stats` (additive first, then multiplicative) and heals any `max_hp_add`.
+`ItemDef` (Resource): `id: StringName`, `display_name: String`, `description: String`, `icon: Texture2D`, and stat deltas `speed_add`, `fire_rate_mult`, `damage_add`, `shot_speed_add`, `range_add`, `max_hp_add`, `shot_scale_mult: float` (Plasma Focus's larger shots). `GameState.apply_item()` folds deltas into `stats` (additive first, then multiplicative) and heals any `max_hp_add`.
 
 `PlayerStats` (Resource): `speed = 90.0` px/s, `fire_rate = 2.5` shots/s, `damage = 3.5`, `shot_speed = 200.0` px/s, `range = 180.0` px, `max_hp = 3.0` hearts.
 

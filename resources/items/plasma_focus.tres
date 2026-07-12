@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/item_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"plasma_focus"
+display_name = "Plasma Focus"
+description = "Refracted containment lens. +2 damage, larger shots."
+damage_add = 2.0
+shot_scale_mult = 1.5
