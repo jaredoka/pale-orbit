@@ -16,6 +16,7 @@ var current_hp: float = 0.0
 var max_hp: float = 0.0
 var collected_items: Array[ItemDef] = []
 var rng_seed: int = 0
+var projectile_pool: ProjectilePool  # set by Main at run start; shared by player & enemies
 var current_room: Vector2i = Vector2i.ZERO
 var cleared: Dictionary = {}  # Vector2i -> bool
 
