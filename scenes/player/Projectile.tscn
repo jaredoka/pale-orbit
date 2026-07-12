@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpaleorbitproj1"]
+
+[ext_resource type="Script" path="res://scenes/player/projectile.gd" id="1_proj"]
+
+[sub_resource type="PlaceholderTexture2D" id="tex_proj"]
+size = Vector2(4, 4)
+
+[sub_resource type="CircleShape2D" id="shape_proj"]
+radius = 2.0
+
+[node name="Projectile" type="Area2D"]
+monitoring = false
+monitorable = false
+script = ExtResource("1_proj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("tex_proj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_proj")

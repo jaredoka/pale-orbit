@@ -6,21 +6,21 @@ Status legend: `[ ]` todo · `[~]` in progress · `[x]` done. Update this file a
 
 ## M0 — Scaffold & player
 
-- [ ] **T01 · Project scaffold + settings** — Sonnet · Deps: — · Reqs: ART-3, NFR-2
+- [x] **T01 · Project scaffold + settings** — Sonnet · Deps: — · Reqs: ART-3, NFR-2
   Create Godot project with settings table from ARCHITECTURE §1, folder layout §2, empty autoloads registered, InputMap actions §8.
   Files: `project.godot`, `autoload/game_state.gd`, `autoload/audio_manager.gd` (stubs)
   Verify: project opens headless with no errors (`godot --headless --path . --quit-after 2`); InputMap actions listed in project.godot.
 
-- [ ] **T02 · GameState core** — Sonnet · Deps: T01 · Reqs: PLR-3, ITM-3
+- [x] **T02 · GameState core** — Sonnet · Deps: T01 · Reqs: PLR-3, ITM-3
   Implement `PlayerStats` + `ItemDef` Resources, GameState properties/signals/methods per ARCHITECTURE §3, `resources/stats/base_player_stats.tres`.
   Files: `scripts/player_stats.gd`, `scripts/item_def.gd`, `autoload/game_state.gd`
   Verify: headless test `tests/test_game_state.gd` — damage/heal clamping, `player_died` once, `apply_item` stat math.
 
-- [ ] **T03 · Player movement** — Sonnet · Deps: T01 · Reqs: PLR-1
+- [x] **T03 · Player movement** — Sonnet · Deps: T01 · Reqs: PLR-1
   Player scene per ARCHITECTURE §5; placeholder rectangle sprite; test room scene with walls (`scenes/rooms/TestRoom.tscn`, temporary).
   Verify: play — WASD 8-dir, normalized diagonals, wall sliding.
 
-- [ ] **T04 · Shooting + projectile pool** — Sonnet · Deps: T02, T03 · Reqs: PLR-2, NFR-1
+- [x] **T04 · Shooting + projectile pool** — Sonnet · Deps: T02, T03 · Reqs: PLR-2, NFR-1
   `ProjectilePool` (§6), Projectile scene, 4-dir arrow-key shooting from stats; collision layers table §7.
   Verify: play — hold arrows while moving; projectiles die on walls/range; no node count growth over 30 s of firing (pool works).
 
