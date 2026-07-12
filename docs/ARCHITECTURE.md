@@ -171,7 +171,7 @@ Archetypes override `_behave`:
 Room (Node2D)
 ├── TileMapLayer (walls + floor; walls on layer=walls) — placeholder until M4: StaticBody2D wall segments + ColorRect visuals (T22 retiles with the real tileset)
 ├── Doors (Node2D)             # up to 4 Door instances, positioned N/E/S/W
-└── Spawns (Node2D)            # Marker2D children tagged with enemy scene paths
+└── (spawn layouts are LAYOUTS constants in room.gd, picked by seeded RNG — no marker nodes)
 ```
 - `func setup(data: RoomData) -> void` — enables doors matching `data.doors`, populates enemies for NORMAL/BOSS, pedestal for TREASURE.
 - On player entry with living enemies: close/lock all doors, spawn enemies (0.4 s telegraph poof), track `died` signals (and Blob spawns). When count hits 0 → open doors, emit `GameState.room_cleared`. Cleared rooms stay cleared (`GameState` keeps a `cleared: Dictionary[Vector2i, bool]`).

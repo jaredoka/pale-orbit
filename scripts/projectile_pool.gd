@@ -24,3 +24,9 @@ func fire(config: Dictionary) -> void:
 			p.activate(config)
 			return
 	# Pool exhausted: drop the shot rather than allocate.
+
+
+func deactivate_all() -> void:
+	for faction: StringName in _pools:
+		for p in _pools[faction]:
+			p.deactivate()
