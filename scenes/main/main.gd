@@ -31,6 +31,7 @@ func _ready() -> void:
 	GameState.projectile_pool = projectile_pool
 	player.projectile_pool = projectile_pool
 	floor_rooms = FloorGenerator.new().generate(GameState.rng_seed)
+	GameState.floor_rooms = floor_rooms
 	GameState.player_died.connect(_on_player_died)
 	GameState.boss_defeated.connect(_on_boss_defeated)
 	_enter_room(Vector2i.ZERO, Vector2i.ZERO)
