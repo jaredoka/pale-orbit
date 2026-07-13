@@ -10,6 +10,7 @@ signal spawned(enemy: EnemyBase)  # death-spawned children (Blob) — room re-re
 @export var contact_damage: float = 0.5
 @export var sheet_dir: String = ""  # e.g. "res://assets/sprites/enemies/skitterer/"
 @export var entity: String = ""     # sheet prefix, e.g. "skitterer"
+@export var hitbox_from_sprite: bool = false  # derive collision from the idle frame's opaque pixels
 
 var hp: float
 
@@ -27,6 +28,37 @@ func _ready() -> void:
 			&"death": {path = sheet_dir + entity + "_death_4.png", frames = 4, fps = 10.0, loop = false},
 		})
 		sprite.play(&"idle")
+		if hitbox_from_sprite:
+			_fit_hitbox_to_sprite()
+
+
+## Replaces the placeholder rect shapes with polygons traced from the idle
+## frame's opaque pixels, so collision always matches the current sheet art.
+func _fit_hitbox_to_sprite() -> void:
+	var tex: Texture2D = sprite.sprite_frames.get_frame_texture(&"idle", 0)
+	if tex == null:
+		return
+	var img: Image = tex.get_image()
+	if img == null:
+		return
+	var bitmap := BitMap.new()
+	bitmap.create_from_image_alpha(img)
+	var polys := bitmap.opaque_to_polygons(Rect2i(Vector2i.ZERO, img.get_size()), 2.0)
+	if polys.is_empty():
+		return
+	$CollisionShape2D.disabled = true
+	$HurtBox/HurtShape.disabled = true
+	var offset := -Vector2(img.get_size()) / 2.0
+	for poly: PackedVector2Array in polys:
+		var pts := PackedVector2Array()
+		for p: Vector2 in poly:
+			pts.append(p + offset)
+		var body_poly := CollisionPolygon2D.new()
+		body_poly.polygon = pts
+		add_child(body_poly)
+		var hurt_poly := CollisionPolygon2D.new()
+		hurt_poly.polygon = pts
+		hurtbox.add_child(hurt_poly)
 
 
 func _physics_process(delta: float) -> void:

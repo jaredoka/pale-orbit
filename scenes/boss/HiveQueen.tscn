@@ -13,7 +13,8 @@ script = ExtResource("1_queen")
 max_hp = 250.0
 contact_damage = 1.0
 sheet_dir = "res://assets/sprites/boss/"
-entity = "hive_queen"
+entity = "drone_boss"
+hitbox_from_sprite = true
 
 [node name="Anim" type="AnimatedSprite2D" parent="."]
 
@@ -28,5 +29,5 @@ collision_mask = 8
 shape = SubResource("shape_queen")
 
 [node name="HpBar" type="Node2D" parent="."]
-position = Vector2(0, -22)
+position = Vector2(0, -38)
 script = ExtResource("2_bar")
