@@ -1,7 +1,7 @@
 """Pale Orbit fixed palette (pixel-art-sheets skill). Do not invent colors."""
 
 PAL = {
-    "outline": "#1a1622",
+    "outline": "#000000",
     "hull0": "#2b2938", "hull1": "#454358", "hull2": "#6b6884", "hull3": "#9b97b0",
     "suit": "#c7cbd8", "accent": "#e8443f", "visor": "#f5d76e",
     "flesh0": "#4a2d4e", "flesh1": "#7a3b6d", "flesh2": "#b3508a",

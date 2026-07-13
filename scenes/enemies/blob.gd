@@ -24,6 +24,8 @@ func _die() -> void:
 			child.position = Vector2(
 				clampf(position.x + offset.x, 32.0, 448.0),
 				clampf(position.y + offset.y, 32.0, 238.0))
-			get_parent().add_child(child)
+			# Deferred: _die runs inside a physics callback (projectile hit), and
+			# adding a body while the physics server is flushing is an error.
+			get_parent().add_child.call_deferred(child)
 			spawned.emit(child)
 	super()
