@@ -27,6 +27,7 @@ func _ready() -> void:
 		_shared_frames = SpriteSheets.build({
 			&"plasma": {path = "res://assets/sprites/fx/plasma_bolt_2.png", frames = 2, fps = 8.0},
 			&"acid": {path = "res://assets/sprites/fx/acid_glob_2.png", frames = 2, fps = 8.0},
+			&"electric": {path = "res://assets/sprites/fx/electric_bolt_2.png", frames = 2, fps = 8.0},
 		})
 	anim.sprite_frames = _shared_frames
 	body_entered.connect(_on_body_entered)
@@ -42,7 +43,8 @@ func activate(config: Dictionary) -> void:
 	max_range = config.range
 	faction = config.faction
 	scale = Vector2.ONE * float(config.get("scale", 1.0))
-	anim.play(&"plasma" if faction == &"player" else &"acid")
+	# Optional cosmetic override (gun skins pass their bolt animation).
+	anim.play(config.get("anim", &"plasma" if faction == &"player" else &"acid"))
 	if faction == &"player":
 		collision_layer = LAYER_PLAYER_SHOTS
 		collision_mask = MASK_WALLS | MASK_ENEMIES

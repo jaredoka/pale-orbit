@@ -8,19 +8,23 @@ OUT = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "sprites", "
 
 KEY = {
     "o": "outline", "s": "suit", "S": "hull3", "r": "accent",
-    "v": "visor", "p": "outline", "w": "hi", "g": "hull1", "c": "cyan1",
+    "p": "outline", "w": "hi", "g": "hull1", "c": "cyan1",
+    # alien head
+    "F": "flesh1", "f": "flesh2", "d": "flesh0", "a": "acid1", "e": "acid2",
 }
 
-# 16 wide x 18 tall body (legs appended per pose, 3 rows)
+# 16 wide x 18 tall body (legs appended per pose, 3 rows).
+# Alien hero: flesh dome head, antennae with acid tips, big acid eyes; keeps
+# the white hero suit on the torso so the player reads distinct from enemies.
 BODY_DOWN = [
-    "....oooooo......",
-    "...ossssssso....",
-    "..osswwssssso...",
-    "..ovvvvvvvvso...",
-    "..ovppvvppvso...",
-    "..ovvvvvvvvso...",
-    "..ossssssssso...",
-    "...osssssso.....",
+    "....e......e....",
+    "....o......o....",
+    "...oFFFFFFFFo...",
+    "..oFfFFFFFFfFo..",
+    "..oFaaFFFFaaFo..",
+    "..oFapFFFFapFo..",
+    "..oFFFFFFFFFFo..",
+    "...oFFFFFFFo....",
     "..ossssssssso...",
     ".osssrrrrssso...",
     ".osssrrrrsssso..",
@@ -30,14 +34,14 @@ BODY_DOWN = [
     "...osssssso.....",
 ]
 BODY_UP = [
-    "....oooooo......",
-    "...ossssssso....",
-    "..osswwssssso...",
-    "..ossssssssso...",
-    "..ossssssssso...",
-    "..ossssssssso...",
-    "..ossssssssso...",
-    "...osssssso.....",
+    "....e......e....",
+    "....o......o....",
+    "...oFFFFFFFFo...",
+    "..oFffFFFFFFFo..",
+    "..oFFFFFFFFFFo..",
+    "..oFFFFdddFFFo..",
+    "..oFFFFFFFFFFo..",
+    "...oFFFFFFFo....",
     "..ossssssssso...",
     ".ossgggggssso...",
     ".ossgggggsssso..",
@@ -47,14 +51,14 @@ BODY_UP = [
     "...osssssso.....",
 ]
 BODY_SIDE = [
-    "....oooooo......",
-    "...ossssssso....",
-    "..osswwsssso....",
-    "..osssvvvvvo....",
-    "..osssvvppvo....",
-    "..osssvvvvvo....",
-    "..osssssssso....",
-    "...osssssso.....",
+    ".....e..........",
+    ".....o..........",
+    "...oFFFFFFFo....",
+    "..oFfFFFFFFFo...",
+    "..oFFFaaaaFFo...",
+    "..oFFFappaFFo...",
+    "..oFFFFFFFFFo...",
+    "...oFFFFFFo.....",
     "..ossssssso.....",
     ".osssrrsssso....",
     ".osssrrsssso....",
@@ -78,6 +82,20 @@ LEGS = {
               "...oSSo.oSSo....",
               "................"],
 }
+
+
+BLANK = "................"
+HEAD_ROWS = 8  # rows 0-7 = antennae + head + neck; torso starts at row 8
+
+
+def head_only(body):
+    """Head rows in place, torso/legs blanked — same canvas position as full body."""
+    return body[:HEAD_ROWS] + [BLANK] * (len(body) - HEAD_ROWS) + [BLANK] * 3
+
+
+def body_only(body):
+    """Torso rows in place, head blanked. Legs appended by pose()."""
+    return [BLANK] * HEAD_ROWS + body[HEAD_ROWS:]
 
 
 def pose(body, legs, dy=0):
@@ -112,13 +130,21 @@ def death_frames():
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    idle = [pose(BODY_DOWN, "stand", 0), pose(BODY_DOWN, "stand", 1)]  # breathe
-    save_strip(idle, os.path.join(OUT, "player_idle_2.png"))
-    save_strip(run_cycle(BODY_DOWN), os.path.join(OUT, "player_run_down_6.png"))
-    save_strip(run_cycle(BODY_UP), os.path.join(OUT, "player_run_up_6.png"))
-    save_strip(run_cycle(BODY_SIDE), os.path.join(OUT, "player_run_side_6.png"))
-    base = pose(BODY_DOWN, "stand", 0)
-    save_strip([whiteout(base), base], os.path.join(OUT, "player_hit_2.png"))
+    # Headless body sheets — the head is a separate overlay sprite so it can
+    # face the shoot direction independently of the movement direction.
+    b_down, b_up, b_side = body_only(BODY_DOWN), body_only(BODY_UP), body_only(BODY_SIDE)
+    idle = [pose(b_down, "stand", 0), pose(b_down, "stand", 1)]  # breathe
+    save_strip(idle, os.path.join(OUT, "player_body_idle_2.png"))
+    save_strip(run_cycle(b_down), os.path.join(OUT, "player_body_run_down_6.png"))
+    save_strip(run_cycle(b_up), os.path.join(OUT, "player_body_run_up_6.png"))
+    save_strip(run_cycle(b_side), os.path.join(OUT, "player_body_run_side_6.png"))
+    base = pose(b_down, "stand", 0)
+    save_strip([whiteout(base), base], os.path.join(OUT, "player_body_hit_2.png"))
+    # Head overlays (one frame each; side flipped in-engine for left)
+    for name, body in (("down", BODY_DOWN), ("up", BODY_UP), ("side", BODY_SIDE)):
+        save_strip([frame_from_map(head_only(body), KEY, SIZE, 0)],
+                   os.path.join(OUT, "player_head_%s.png" % name))
+    # Death stays a full composite (head+body) — Head/Gun overlays hide on death.
     save_strip(death_frames(), os.path.join(OUT, "player_death_4.png"))
 
 

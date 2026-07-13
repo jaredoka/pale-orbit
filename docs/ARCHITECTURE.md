@@ -136,7 +136,9 @@ Main (Node2D) [main.gd]
 ### `Player.tscn`
 ```
 Player (CharacterBody2D, layer=player)
-├── Sprite2D (or AnimatedSprite2D from M4)
+├── Anim (AnimatedSprite2D)     # headless body sheets (player_body_*): idle/run follow MOVEMENT direction
+├── Gun (AnimatedSprite2D)      # cosmetic handgun skin (GUN_SKINS + GameState.gun_skin, skin convention v2 in art/scripts/gun_plasma_blaster_v4.py); follows AIM; pivot pixel pinned to node origin; z behind body when aiming up; bullets + muzzle flash spawn at muzzle tip
+├── Head (Sprite2D)             # head overlay (player_head_down/up/side): follows AIM direction (shoot dir wins over move dir); flip_h for left
 ├── CollisionShape2D
 ├── ShootTimer (Timer)         # wait_time derived from stats.fire_rate
 └── HurtBox (Area2D)           # monitors enemy & enemy_shot layers
