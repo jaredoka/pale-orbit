@@ -20,6 +20,9 @@ var projectile_pool: ProjectilePool  # set by Main at run start; shared by playe
 var floor_rooms: Dictionary = {}  # { Vector2i: RoomData } — set by Main; read by HUD minimap
 var current_room: Vector2i = Vector2i.ZERO
 var cleared: Dictionary = {}  # Vector2i -> bool
+# Equipped cosmetic gun skin (see GUN_SKINS in player.gd). Cosmetic only —
+# never changes stats. &"electric" is the IAP prototype; default is &"plasma".
+var gun_skin: StringName = &"electric"
 
 var _dead: bool = false
 

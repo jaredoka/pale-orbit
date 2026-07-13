@@ -139,3 +139,12 @@ res://
 - Control remapping UI and gamepad bindings
 - Distribution (itch.io first? Steam? mobile stores?) and monetization
 - Final title confirmation ("Pale Orbit")
+
+## 8. Weapon Cosmetics / IAP Pipeline (added 2026-07-13)
+
+Decision: the hero (24 px) and viewport (480×270) stay fixed; cosmetic detail does NOT come from bigger characters.
+
+- **Composable handgun**: the player's gun is a separate `AnimatedSprite2D` on the Player, held two-handed. **Skin convention v2** (`art/scripts/gun_plasma_blaster_v4.py`): 16×16 frames, gun points right, hands drawn on the sprite, pivot pixel (7,8) pinned to the node origin, muzzle tip at x=14 (7 px forward). Bullets and muzzle flash spawn at the muzzle tip.
+- **A cosmetic skin = 3 assets, zero code**: gun strip (1+ frames, animated for crackle/flame), a projectile bolt animation (registered in `projectile.gd`), and a 64×64 shop icon (`assets/ui/shop_gun_<name>_64.png`) — the big icon is where the IAP detail sells; effects (arcs, flames outside the silhouette, tinted bolts) carry the identity in-game, not static pixels.
+- Skins are registered in `GUN_SKINS` (`player.gd`) and equipped via `GameState.gun_skin`. **Cosmetic only — never stats.** Prototype: `electric` (crackling 2f gun, electric bolts, shop icon). `GameState.gun_skin` currently defaults to `&"electric"` to demo the prototype; flip to `&"plasma"` for release.
+- Future work for real IAP: skin ownership/persistence (save file), equip UI (shop/inventory using the 64 px icons), platform store integration.
