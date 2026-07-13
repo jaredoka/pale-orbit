@@ -117,7 +117,9 @@ func _fire_spread(count: int) -> void:
 
 
 func _spawn_skitterers() -> void:
-	_minions = _minions.filter(func(m: EnemyBase) -> bool: return is_instance_valid(m))
+	# Untyped lambda param + assign(): freed instances can't convert to EnemyBase,
+	# and filter() returns an untyped Array that can't be assigned to Array[EnemyBase].
+	_minions.assign(_minions.filter(func(m: Variant) -> bool: return is_instance_valid(m)))
 	for i in 2:
 		if _minions.size() >= SPAWN_CAP:
 			return
