@@ -21,3 +21,6 @@ Follow `docs/GITFLOW.md`: work on `feature/tXX-*` branches off `develop`, merge 
 
 ## Verification
 Use the `godot-verify` skill after every task (parse check, headless tests in `tests/`, play verification). Art tasks use the `pixel-art-sheets` skill (palette and sheet spec live there). A task is done only when its cited requirement ACs pass.
+
+## High-fidelity art (pixel-art-32)
+For detailed one-off art beyond programmatic sheets (bosses, portraits, key art), use the user-level `pixel-art-32` skill (Claude-written Pillow drawing → optional cleanup → post-process). In this repo: output **PNG** (not WebP) with `--png`, place finals under `assets/sprites/` per `docs/ARCHITECTURE.md`, keep intermediates (`art/raw`, `art/cutout`) out of git, match the project palette from `pixel-art-sheets` where sizes overlap, and apply the standard Godot import settings (nearest filter, no mipmaps). Animated sheets remain `pixel-art-sheets` territory.

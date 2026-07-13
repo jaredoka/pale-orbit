@@ -9,3 +9,11 @@ Godot_v*.exe
 # OS
 Thumbs.db
 .DS_Store
+
+# pixel-art-32 intermediates (scripts in art/scripts/ stay tracked)
+art/raw/
+art/cutout/
+art/final/
+
+# Python
+__pycache__/

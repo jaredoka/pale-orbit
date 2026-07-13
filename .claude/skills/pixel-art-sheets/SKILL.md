@@ -7,14 +7,14 @@ description: Generate Enter-the-Gungeon-style pixel-art sprite sheets (PNG) for 
 
 ## Style rules (Gungeon-inspired, space/alien theme)
 - Characters 16–24 px tall, drawn on a fixed pixel grid — every asset at the same pixel density.
-- Big readable silhouettes, large expressive eyes (2×2 or 3×2 px whites with 1 px pupil), 1 px dark outline (not pure black — use `#1a1622`).
+- Big readable silhouettes, large expressive eyes (2×2 or 3×2 px whites with 1 px pupil), 1 px pure black outline (`#000000`) on every sprite — visibility rule, applies to all current and future sprites.
 - Squash-and-stretch: run cycles compress 1 px on contact frames, stretch 1 px on airborne frames; enemies pulse/breathe in idle.
 - Light source top-left: 1-shade highlight on top-left edges, 1-shade shadow bottom-right.
 
 ## Palette (fixed — do not invent colors)
 | Role | Hex ramp |
 |---|---|
-| Outline / darkest | `#1a1622` |
+| Outline / darkest | `#000000` |
 | Hull grays (tiles, armor) | `#2b2938 → #454358 → #6b6884 → #9b97b0` |
 | Player suit | `#c7cbd8` (suit), `#e8443f` (accent stripe), `#f5d76e` (visor) |
 | Alien flesh | `#4a2d4e → #7a3b6d → #b3508a` |
