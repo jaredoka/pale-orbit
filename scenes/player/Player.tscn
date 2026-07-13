@@ -12,6 +12,10 @@ script = ExtResource("1_player")
 
 [node name="Anim" type="AnimatedSprite2D" parent="."]
 
+[node name="Gun" type="AnimatedSprite2D" parent="."]
+
+[node name="Head" type="Sprite2D" parent="."]
+
 [node name="Muzzle" type="AnimatedSprite2D" parent="."]
 visible = false
 
